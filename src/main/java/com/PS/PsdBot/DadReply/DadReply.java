@@ -1,9 +1,7 @@
-package com.paul.PaulSeahBot.DadReply;
+package com.PS.PsdBot.DadReply;
 
-import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
-import com.paul.PaulSeahBot.MessageParsing.DetectWords;
+import com.PS.PsdBot.MessageParsing.DetectWords;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 

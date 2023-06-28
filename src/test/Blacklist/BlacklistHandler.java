@@ -1,6 +1,6 @@
-package com.paul.PaulSeahBot.Blacklist;
+package com.PS.PsdBot.Blacklist;
 
-import com.paul.PaulSeahBot.MessageParsing.Command;
+import com.PS.PsdBot.MessageParsing.Command;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import reactor.core.publisher.Mono;
 

@@ -1,12 +1,4 @@
-package com.paul.PaulSeahBot.MessageParsing;
-
-import Swears.SwearRetriever;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.Arrays;
-import java.util.function.BiFunction;
+package com.PS.PsdBot.MessageParsing;
 
 public enum InitMsgCmds {
 //    SWEARS((event, args) -> args.flatMap(arg ->{

@@ -1,8 +1,8 @@
-package com.paul.PaulSeahBot;
+package com.PS.PsdBot;
 
-import com.paul.PaulSeahBot.MessageParsing.BotConfig;
+import com.PS.PsdBot.MessageParsing.BotConfig;
 
-public class PaulSeahBotApplication {
+public class PsdBotApplication {
 
 	public static void main(String[] args) {
 		System.out.println("first");

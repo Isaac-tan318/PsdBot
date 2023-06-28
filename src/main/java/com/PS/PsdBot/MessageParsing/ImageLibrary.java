@@ -1,6 +1,4 @@
-package com.paul.PaulSeahBot.MessageParsing;
-
-import discord4j.core.spec.EmbedCreateSpec;
+package com.PS.PsdBot.MessageParsing;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

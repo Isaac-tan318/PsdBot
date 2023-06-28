@@ -1,4 +1,4 @@
-package com.paul.PaulSeahBot.MessageParsing;
+package com.PS.PsdBot.MessageParsing;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -7,7 +7,6 @@ import discord4j.core.object.presence.ClientActivity;
 import discord4j.core.object.presence.ClientPresence;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;

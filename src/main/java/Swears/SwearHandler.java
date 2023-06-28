@@ -1,12 +1,9 @@
 package Swears;
 
-import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
+import com.PS.PsdBot.MessageParsing.CmdWithArgs;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Member;
 
-import java.sql.*;
 import java.util.List;
-import java.util.Locale;
 
 public class SwearHandler implements CmdWithArgs {
     public void execute(MessageCreateEvent event, List<String> content) {

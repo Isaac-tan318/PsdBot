@@ -1,6 +1,6 @@
 package Swears;
 
-import com.paul.PaulSeahBot.MessageParsing.DetectWords;
+import com.PS.PsdBot.MessageParsing.DetectWords;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Member;
 

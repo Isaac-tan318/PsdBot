@@ -1,4 +1,4 @@
-package com.paul.PaulSeahBot;
+package com.PS.PsdBot;
 
 //public class ReactiveBotConfig {
 //

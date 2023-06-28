@@ -1,14 +1,13 @@
-package com.paul.PaulSeahBot.MessageParsing;
+package com.PS.PsdBot.MessageParsing;
 
-import Swears.SwearHandler;
-import com.paul.PaulSeahBot.Reactions.defaultReact;
+import com.PS.PsdBot.Reactions.defaultReact;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 public enum Cmd {
 
 //    BLACKLIST(new BlacklistHandler()),
-    PAUL(event -> event.getMessage().getChannel().block().createMessage("ni hao!!").block()),
-    POOP(new defaultReact());
+    PS(event -> event.getMessage().getChannel().block().createMessage("ni hao!!").block()),
+    HI(new defaultReact());
 
     public final Command command;
 

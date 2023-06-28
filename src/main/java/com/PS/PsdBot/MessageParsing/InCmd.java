@@ -1,8 +1,6 @@
-package com.paul.PaulSeahBot.MessageParsing;
+package com.PS.PsdBot.MessageParsing;
 
 import Swears.SwearHandler;
-import com.paul.PaulSeahBot.DadReply.DadReply;
-import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.paul.PaulSeahBot.Blacklist;
+package com.PS.PsdBot.Blacklist;
 
-import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
-import com.paul.PaulSeahBot.MessageParsing.ConfirmationMessage;
+import com.PS.PsdBot.MessageParsing.CmdWithArgs;
+import com.PS.PsdBot.MessageParsing.ConfirmationMessage;
 import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import reactor.core.publisher.Mono;

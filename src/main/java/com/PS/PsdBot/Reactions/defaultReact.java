@@ -1,6 +1,6 @@
-package com.paul.PaulSeahBot.Reactions;
+package com.PS.PsdBot.Reactions;
 
-import com.paul.PaulSeahBot.MessageParsing.Command;
+import com.PS.PsdBot.MessageParsing.Command;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.reaction.ReactionEmoji;
