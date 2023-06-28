@@ -1,4 +1,4 @@
-package com.paul.PaulSeahBot;
+package com.paul.PaulSeahBot.MessageParsing;
 
 import Swears.SwearRetriever;
 import discord4j.core.event.domain.message.MessageCreateEvent;

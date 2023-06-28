@@ -1,16 +1,13 @@
 package com.paul.PaulSeahBot.MessageParsing;
 
-import Swears.ReactiveSwearHandler;
-import com.paul.PaulSeahBot.Blacklist.BlacklistHandler;
-import com.paul.PaulSeahBot.Command;
+import Swears.SwearHandler;
 import com.paul.PaulSeahBot.Reactions.defaultReact;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import reactor.core.publisher.Mono;
 
 public enum Cmd {
-    SWEARS(new ReactiveSwearHandler()),
-    BLACKLIST(new BlacklistHandler()),
-    PAUL(event -> event.getMessage().getChannel().flatMap(channel -> channel.createMessage("bow say ah!")).then()),
+
+//    BLACKLIST(new BlacklistHandler()),
+    PAUL(event -> event.getMessage().getChannel().block().createMessage("ni hao!!").block()),
     POOP(new defaultReact());
 
     public final Command command;
@@ -19,8 +16,8 @@ public enum Cmd {
         this.command = command;
     }
 
-     public Mono<Void> execute(MessageCreateEvent event){
-        return command.execute(event);
+     public void execute(MessageCreateEvent event){
+        command.execute(event);
      }
 
 

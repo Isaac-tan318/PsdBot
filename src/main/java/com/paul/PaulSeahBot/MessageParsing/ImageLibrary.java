@@ -1,4 +1,4 @@
-package com.paul.PaulSeahBot;
+package com.paul.PaulSeahBot.MessageParsing;
 
 import discord4j.core.spec.EmbedCreateSpec;
 

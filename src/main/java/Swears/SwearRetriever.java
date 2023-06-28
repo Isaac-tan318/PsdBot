@@ -53,6 +53,14 @@ public class SwearRetriever {
                         + "ass : " + aCount + "\n"
                         + "gay : " + gCount + "\n"
                         + "faggot : " + fagCount).block();
+        System.out.println(                        "fuck : " + fCount + "\n"
+                + "bitch : " + bCount + "\n"
+                + "cunt : " + cCount + "\n"
+                + "shit : " + sCount + "\n"
+                + "nigglet : " + nCount + "\n"
+                + "ass : " + aCount + "\n"
+                + "gay : " + gCount + "\n"
+                + "faggot : " + fagCount);
     }
     public void serverTotal(){
         String serverId = event.getGuildId().get().asString();
@@ -97,7 +105,7 @@ public class SwearRetriever {
             e.printStackTrace();
         }
     }
-    public static void seeHighestCount(MessageCreateEvent event){
+    public void seeHighestCount(){
         String db = "jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db";
         try {
             String highest = "";

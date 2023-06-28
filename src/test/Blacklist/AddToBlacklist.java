@@ -1,16 +1,13 @@
 package com.paul.PaulSeahBot.Blacklist;
 
-import com.paul.PaulSeahBot.CmdWithArgs;
-import com.paul.PaulSeahBot.ConfirmationMessage;
+import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
+import com.paul.PaulSeahBot.MessageParsing.ConfirmationMessage;
 import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.User;
 import reactor.core.publisher.Mono;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -18,12 +15,12 @@ import static java.sql.DriverManager.getConnection;
 
 public class AddToBlacklist implements CmdWithArgs {
     @Override
-    public Mono<Void> execute(MessageCreateEvent event, List<String> args) {
+    public void execute(MessageCreateEvent event, List<String> args) {
         String toAdd = args.get(1);
         String serverId = event.getGuildId().orElse(Snowflake.of("")).asString();
 
         if(!toAdd.matches("[a-zA-Z]+")){
-            return event.getMessage().getChannel()
+            event.getMessage().getChannel()
                     .flatMap(channel -> channel.createMessage("It has to be an actual word bro")).then();
         }
 
@@ -46,24 +43,23 @@ public class AddToBlacklist implements CmdWithArgs {
                                 connection.close();
                                 statement.close();
 
-                                SeeBlacklist sbl = new SeeBlacklist();
-                                Mono<Void> sendBlackList = sbl.execute(event, args);
-                                return addWordEvent.getMessage().getChannel()
-                                        .flatMap(channel -> channel.createMessage("Current blacklist:"))
-                                        .and(sendBlackList);
+//                                SeeBlacklist sbl = new SeeBlacklist();
+//                                Mono<Void> sendBlackList = sbl.execute(event, args);
+//                                addWordEvent.getMessage().getChannel()
+//                                        .flatMap(channel -> channel.createMessage("Current blacklist:"))
+//                                        .and(sendBlackList);
 
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
-                        return event.getMessage().getChannel().flatMap(channel -> channel.createMessage("ok nvm then")).then();
+                        event.getMessage().getChannel().flatMap(channel -> channel.createMessage("ok nvm then")).then();
                     }
                     );
 
 
 
         }
-        return Mono.empty();
     }
 }
 

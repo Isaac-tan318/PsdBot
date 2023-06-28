@@ -1,20 +1,24 @@
 package com.paul.PaulSeahBot.MessageParsing;
 
-import com.paul.PaulSeahBot.DadReply;
+import Swears.SwearHandler;
+import com.paul.PaulSeahBot.DadReply.DadReply;
+import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public enum InCmd {
-    IN(new DadReply());
+    SWEARS(new SwearHandler()),
+//    BLACKLIST()
+    ;
 
-    private final InnerCommand innerCommand;
+    private final CmdWithArgs innerCommand;
 
-    InCmd(InnerCommand innerCommand) {
+    InCmd(CmdWithArgs innerCommand) {
         this.innerCommand = innerCommand;
     }
-    public Mono<Void> execute (MessageCreateEvent event, List<String> args) {
-        return innerCommand.execute(event, args);
+    public void execute (MessageCreateEvent event, List<String> args) {
+        innerCommand.execute(event, args);
     }
 }
+// inner cmds are the same as cmds with args because i was lazy

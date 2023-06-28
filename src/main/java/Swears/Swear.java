@@ -8,11 +8,38 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public enum Swear {
+    //dont look!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     FUCK,
     BITCH,
     CUNT,
     SHIT,
-    NIGG,
+    NIGGER,
     ASS,
     GAY,
     FAG;
@@ -22,9 +49,10 @@ public enum Swear {
 
     Swear(){
         countName = this.name().charAt(0);
-
+        //first letter of swear, used to add to database
     }
 
+    // idk what this is for
     public void initCounts(MessageCreateEvent event) {
         try {
             String userId = event.getMember().get().getId().asString();
@@ -44,13 +72,13 @@ public enum Swear {
             e.printStackTrace();
         }
     }
-    public void addCount(String userId){
+    public void addToCount(String userId,int num){
         String db = "jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db";
         try {
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection(db);
             connection.setAutoCommit(false);
-            String countUpdate = String.format("UPDATE UserSwearCount SET %s_count = %s_count + 1 WHERE user_id = %s;", countName, countName, userId);
+            String countUpdate = String.format("UPDATE UserSwearCount SET %s_count = %s_count + %s WHERE user_id = %s;", countName, countName,num, userId);
             Statement statement = connection.createStatement();
             statement.executeUpdate(countUpdate);
             connection.commit();

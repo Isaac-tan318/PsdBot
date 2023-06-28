@@ -1,7 +1,7 @@
 //package com.paul.PaulSeahBot.Blacklist;
 //
-//import com.paul.PaulSeahBot.BotConfig;
-//import com.paul.PaulSeahBot.Command;
+//import com.paul.PaulSeahBot.MessageParsing.BotConfig;
+//import com.paul.PaulSeahBot.MessageParsing.Command;
 //import discord4j.common.util.Snowflake;
 //import discord4j.core.event.domain.message.MessageCreateEvent;
 //import discord4j.core.object.entity.Entity;

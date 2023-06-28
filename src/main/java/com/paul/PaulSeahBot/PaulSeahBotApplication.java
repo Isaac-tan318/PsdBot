@@ -1,12 +1,13 @@
 package com.paul.PaulSeahBot;
 
-import com.paul.PaulSeahBot.MessageParsing.ReactiveBotConfig;
+import com.paul.PaulSeahBot.MessageParsing.BotConfig;
 
 public class PaulSeahBotApplication {
 
 	public static void main(String[] args) {
+		System.out.println("first");
 
-		ReactiveBotConfig botConfig = new ReactiveBotConfig();
+		BotConfig botConfig = new BotConfig();
 		System.out.println("hi");
 		botConfig.runBot();
 		System.out.println("main");

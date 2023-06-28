@@ -1,7 +1,6 @@
 package com.paul.PaulSeahBot.Blacklist;
 
-import com.paul.PaulSeahBot.CmdWithArgs;
-import com.paul.PaulSeahBot.Command;
+import com.paul.PaulSeahBot.MessageParsing.CmdWithArgs;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import reactor.core.publisher.Mono;
 
@@ -16,7 +15,7 @@ import static java.sql.DriverManager.getConnection;
 public class SeeBlacklist implements CmdWithArgs {
 
     @Override
-    public Mono<Void> execute(MessageCreateEvent event, List<String> args) {
+    public void execute(MessageCreateEvent event, List<String> args) {
         try {
             String serverId = event.getGuildId().get().asString();
             Connection connection = getConnection("jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db");
@@ -27,11 +26,11 @@ public class SeeBlacklist implements CmdWithArgs {
                 String bannedWords = "Banned words:\n" + resultSet.getString("banned_words").replaceAll(",", "\n");
 
                 if (bannedWords.equals("Banned words:\n")) {
-                    return event.getMessage().getChannel()
+                    event.getMessage().getChannel()
                             .flatMap(channel -> channel.createMessage("Banned words:\n(none)")).then();
                 }
                 else {
-                    return event.getMessage().getChannel()
+                    event.getMessage().getChannel()
                             .flatMap(channel -> channel.createMessage(bannedWords)).then();
                 }
             }
@@ -41,7 +40,6 @@ public class SeeBlacklist implements CmdWithArgs {
             e.printStackTrace();
         }
 
-        return Mono.empty();
     }
 }
 
