@@ -48,10 +48,12 @@ public class BotConfig{
                             });
                     //runs first inner command or cmdwithargs that is after or the first word
 
-                    if(hasInCmd.get())
+                    if(hasInCmd.get()){
+                        System.out.println("returned");
                         return;
+                    }
 
-                    Arrays.stream(Cmd.values()).filter(cmd -> cmd.name().equals(splitMsg.get(0)))
+                    Arrays.stream(Cmd.values()).filter(cmd -> ("!" + cmd.name()).equalsIgnoreCase(splitMsg.get(0)))
                             .findFirst().ifPresent(cmd -> cmd.execute(event));
                     // runs cmds without args
 

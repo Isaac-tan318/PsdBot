@@ -13,7 +13,6 @@ public class defaultReact implements Command {
         Mono.when(
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD33")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD32")),
-                msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD30")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD29")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD28")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD27")),
@@ -29,8 +28,8 @@ public class defaultReact implements Command {
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD16")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD15")),
                 msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD14")),
-                msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD13")),
-                msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD31"))).block();
+                msg.addReaction(ReactionEmoji.unicode("\uD83E\uDD13"))
+        ).block();
     }
 
 }
