@@ -17,10 +17,10 @@ public class DadReply implements DetectWords {
             return;
         }
         if(msg.size() >= name){
-            event.getMessage().getChannel().block().createMessage(String.format("Hi %s, TUCK IN YOUR SHIRT! WHERE IS YOUR BELT?", msg.get(name))).block();
+            event.getMessage().getChannel().block().createMessage(String.format("Hi %s, I'm PsdBot!", msg.get(name))).block();
         }
         else
-            event.getMessage().getChannel().block().createMessage("you are?").block();
+            event.getMessage().getChannel().block().createMessage("who r u?").block();
 
     }
 }

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static java.sql.DriverManager.getConnection;
 
 public class SwearRetriever {
-    private String fCount,bCount, cCount,sCount,nCount,aCount,gCount,fagCount;
+    private int fCount,bCount, cCount,sCount,nCount,aCount,gCount,fagCount,total;
     private final MessageCreateEvent event;
     private final String userId;
 
@@ -26,14 +26,15 @@ public class SwearRetriever {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(inputCommand);
             while(resultSet.next()){
-                fCount = resultSet.getString("f_count");
-                bCount = resultSet.getString("b_count");
-                cCount = resultSet.getString("c_count");
-                sCount = resultSet.getString("s_count");
-                nCount = resultSet.getString("n_count");
-                aCount = resultSet.getString("a_count");
-                gCount = resultSet.getString("g_count");
-                fagCount = resultSet.getString("fag_count");
+                fCount = Integer.parseInt(resultSet.getString("f_count"));
+                bCount = Integer.parseInt(resultSet.getString("b_count"));
+                cCount = Integer.parseInt(resultSet.getString("c_count"));
+                sCount = Integer.parseInt(resultSet.getString("s_count"));
+                nCount = Integer.parseInt(resultSet.getString("n_count"));
+                aCount = Integer.parseInt(resultSet.getString("a_count"));
+                gCount = Integer.parseInt(resultSet.getString("g_count"));
+                fagCount = Integer.parseInt(resultSet.getString("fag_count"));
+                total = fCount + bCount + cCount + sCount + nCount + aCount + gCount + fagCount;
             }
             connection.close();
             statement.close();
@@ -42,8 +43,57 @@ public class SwearRetriever {
             e.printStackTrace();
         }
     }
+    public void sendSwearCount(){
+        event.getMessage().getChannel().block().createMessage(
+            "You have sent " + total + " swears"
+        ).block();
+        // just to mirror to console
+        System.out.println("You have sent " + total + " swears");
+    }
+    public void serverTotal(){
+        String serverId = event.getGuildId().get().asString();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db");
+            String getTotal = String.format("SELECT SUM(f_count) + SUM(b_count) + SUM(c_count) + SUM(s_count) + SUM(n_count) + SUM(a_count) + SUM(g_count) + SUM(fag_count) "
+                    + "FROM UserSwearCount WHERE server = \"%s\" GROUP BY server", serverId);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getTotal);
+            while(resultSet.next()) {
+                String total = resultSet.getString("SUM(f_count) + SUM(b_count) + SUM(c_count) + SUM(s_count) + SUM(n_count) + SUM(a_count) + SUM(g_count) + SUM(fag_count)");
 
-    public void sendSwearCount() {
+                event.getMessage().getChannel().block().createMessage(
+                        "Server total: " + total
+                ).block();
+            }
+            connection.close();
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void seeHighestCount(){
+        String db = "jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db";
+        try {
+            String highest = "";
+            int fCount = 0;
+            Connection connection = getConnection(db);
+            String getBlacklist = "SELECT username, f_count FROM UserSwearCount ORDER BY f_count DESC LIMIT 1";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getBlacklist);
+            while (resultSet.next()) {
+                highest = resultSet.getString("username");
+                fCount = resultSet.getInt("f_count");
+            }
+            connection.close();
+            statement.close();
+            event.getMessage().getChannel().block().createMessage("highest guy: " + highest + " with " + fCount + " fucks").block();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void oldSendSwearCount() {
                 event.getMessage().getChannel().block().createMessage(
                         "fuck : " + fCount + "\n"
                         + "bitch : " + bCount + "\n"
@@ -62,7 +112,7 @@ public class SwearRetriever {
                 + "gay : " + gCount + "\n"
                 + "faggot : " + fagCount);
     }
-    public void serverTotal(){
+    public void oldServerTotal(){
         String serverId = event.getGuildId().get().asString();
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db");
@@ -85,11 +135,6 @@ public class SwearRetriever {
 //                        .forEach()
 
                 event.getMessage().getChannel().block().createMessage(
-
-
-
-
-
                         "fuck : " + fCount + "\n"
                                 + "bitch : " + bCount + "\n"
                                 + "cunt : " + cCount + "\n"
@@ -102,26 +147,6 @@ public class SwearRetriever {
             connection.close();
             statement.close();
         }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-    public void seeHighestCount(){
-        String db = "jdbc:sqlite:C:\\Users\\James\\Desktop\\sqlite\\sqlite-tools-win32-x86-3380200\\ps_bot.db";
-        try {
-            String highest = "";
-            int fCount = 0;
-            Connection connection = getConnection(db);
-            String getBlacklist = "SELECT username, f_count FROM UserSwearCount ORDER BY f_count DESC LIMIT 1";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getBlacklist);
-            while (resultSet.next()) {
-                highest = resultSet.getString("username");
-                fCount = resultSet.getInt("f_count");
-            }
-            connection.close();
-            statement.close();
-            event.getMessage().getChannel().block().createMessage("highest guy: " + highest + " with " + fCount + " fucks").block();
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }

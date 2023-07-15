@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class checkForSwears implements DetectWords {
+public class CheckForSwears implements DetectWords {
 
     @Override
     public void check(MessageCreateEvent event, List<String> content) {

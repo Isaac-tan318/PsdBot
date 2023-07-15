@@ -13,19 +13,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BotConfig{
 
-    private static final Map<String, Command> commands = new HashMap<>();
+    // logs into the bot
     public static GatewayDiscordClient client = DiscordClientBuilder.create(getId())
             .build()
             .login()
             .block();
 
-    public void runBot(){
+    public static void runBot(){
 
         client.updatePresence(ClientPresence.online(ClientActivity.playing("ni hao"))).subscribe();
 
 
         client.getEventDispatcher().on(MessageCreateEvent.class).subscribe(
                 event -> {
+                    if(event.getMember().get().isBot())
+                        return;
+
                     String content = event.getMessage().getContent();
 
                     System.out.println(content);
@@ -58,7 +61,7 @@ public class BotConfig{
 
         client.onDisconnect().block();
     }
-    // so i can put this on github without the id getting stolen xd
+    // so i can put this on github without the id getting stolen
     private static String getId(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\James\\Desktop\\ps bot id.txt"));

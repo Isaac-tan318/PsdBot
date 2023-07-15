@@ -1,6 +1,6 @@
 package com.PS.PsdBot.MessageParsing;
 
-import Swears.checkForSwears;
+import Swears.CheckForSwears;
 import com.PS.PsdBot.DadReply.DadReply;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
@@ -17,7 +17,7 @@ public class WordDetector{
     }
 
     public void detect(){
-        DetectWords[] detectWords = {new checkForSwears(), new DadReply()};
+        DetectWords[] detectWords = {new CheckForSwears(), new DadReply()};
 
         for(DetectWords detect : detectWords){
             detect.check(event, content);
